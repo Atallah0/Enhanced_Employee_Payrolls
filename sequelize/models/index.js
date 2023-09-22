@@ -38,4 +38,15 @@ db.sequelize.sync({ force: false })
     console.log('yes re-sync done!');
   })
 
+// 1:N
+db.managers.hasMany(db.employees, {
+  foreignKey: 'managerId',
+  as: 'employee'
+})
+
+db.employees.belongsTo(db.managers, {
+  foreignKey: 'managerId',
+  as: 'manager'
+})
+
 module.exports = db

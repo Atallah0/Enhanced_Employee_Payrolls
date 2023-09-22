@@ -6,7 +6,8 @@ const {
     getManagers,
     getManager,
     updateManager,
-    deleteManager
+    deleteManager,
+    getManagerEmployees
 } = require('../controllers/managerController')
 
 router.get('/', getManagers)
@@ -14,5 +15,6 @@ router.get('/:id', getManager)
 router.post('/', createManager)
 router.put('/:id', updateManager)
 router.delete('/:id', deleteManager)
+router.get('/employees/:id', getManagerEmployees)
 
 module.exports = router
