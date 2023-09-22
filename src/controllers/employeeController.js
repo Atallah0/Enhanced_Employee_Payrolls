@@ -1,6 +1,7 @@
 const db = require('../../sequelize/models')
 // create main Model
 const Employees = db.employees
+const Payrolls = db.payrolls // TO-DO
 
 // Functions
 // Create employee

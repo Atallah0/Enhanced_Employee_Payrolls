@@ -32,13 +32,15 @@ db.sequelize = sequelize
 
 db.managers = require('./managerModel')(sequelize, DataTypes)
 db.employees = require('./employeeModel')(sequelize, DataTypes)
+db.payrolls = require('./payrollModel')(sequelize, DataTypes)
+
 
 db.sequelize.sync({ force: false })
   .then(() => {
     console.log('yes re-sync done!');
   })
 
-// 1:N
+// 1:N between manager and employees
 db.managers.hasMany(db.employees, {
   foreignKey: 'managerId',
   as: 'employee'
@@ -46,7 +48,20 @@ db.managers.hasMany(db.employees, {
 
 db.employees.belongsTo(db.managers, {
   foreignKey: 'managerId',
+  // onDelete: 'CASCADE',
   as: 'manager'
+})
+
+// 1:N between employee and payrolls
+db.employees.hasMany(db.payrolls, {
+  foreignKey: 'employeeId',
+  as: 'payroll'
+})
+
+db.payrolls.belongsTo(db.employees, {
+  foreignKey: 'employeeId',
+  // onDelete: 'CASCADE',
+  as: 'employee'
 })
 
 module.exports = db

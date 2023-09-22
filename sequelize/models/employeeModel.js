@@ -15,6 +15,7 @@ module.exports = (sequelize, DataTypes) => {
             references: {
                 model: db.managers, // Reference the Managers model
                 key: 'id', // Reference the ID column in Managers
+                onDelete: 'CASCADE',
             },
         }
     }, {

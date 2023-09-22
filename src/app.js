@@ -10,6 +10,8 @@ let corOptions = {
 //Routes
 const managers = require('./routes/managerRoutes')
 const employees = require('./routes/employeeRoutes')
+const payrolls = require('./routes/payrollRoutes')
+
 
 // Middleware
 app.use(cors(corOptions))
@@ -23,6 +25,7 @@ app.get('/', (req, res) => {
 //Routers
 app.use('/api/managers', managers)
 app.use('/api/employees', employees)
+app.use('/api/payrolls', payrolls)
 
 const PORT = process.env.PORT || 5000
 app.listen(PORT, () => {
